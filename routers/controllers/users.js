@@ -14,10 +14,11 @@ try{
   const country =req.body.country;
   const email =req.body.email;
   const role_id =req.body.role_id;
+  const is_deleted =req.body.is_deleted;
    console.log(hashPassword);
   const password = hashPassword;
-  const query = `INSERT INTO users (firstName, lastName, age, country, email, password, role_id) 
-  VALUES (?, ?, ?, ?,?, ?, ?)`;
+  const query = `INSERT INTO users (firstName, lastName, age, country, email, password, role_id,is_deleted) 
+  VALUES (?, ?, ?, ?,?, ?, ?,?)`;
   const data = [
 	  firstName,
 	  lastName,
@@ -25,7 +26,8 @@ try{
 	  country,
 	  email,
 	  password,
-	  role_id
+	  role_id,
+	  is_deleted
 	];
 	db.query(query, data, (err, result) => {
 	  console.log(hashPassword);

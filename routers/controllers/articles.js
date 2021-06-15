@@ -4,7 +4,7 @@ const getAllArticles = (req, res) => {
   const query = `SELECT * FROM articles;`;
   db.query(query, (err, result) => {
     if (err) throw err;
-    console.log(result);
+    console.log("RESULT:",result);
     res.json(result);
   });
 };
