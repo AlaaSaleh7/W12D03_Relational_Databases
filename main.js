@@ -2,7 +2,6 @@ const express = require('express');
 require('dotenv').config();
 require('./db/db');
 
-const db =require('./')
 
 //routers
 const articlesRouter = require('./routers/routes/articles');
