@@ -28,22 +28,14 @@ const getAnArticleById = (req, res) => {
 };
 
 const createNewArticle = (req, res) => {
-  const { title, description, author } = req.body;
-
-  const article = new articlesModel({
-    title,
-    description,
-    author,
-  });
-
-  article
-    .save()
-    .then((result) => {
-      res.status(201).json(result);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  const { title, description,author_id} = req.body;
+  const query = `INSERT INTO articles (title,description, author_id) 
+  VALUES (?, ?, ?)`
+  const arr =[title, description,author_id]
+db.query(query,arr,(err,result)=>{
+if(err)throw err;
+res.json(result)
+})
 };
 
 const updateAnArticleById = (req, res) => {
