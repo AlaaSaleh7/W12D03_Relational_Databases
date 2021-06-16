@@ -10,8 +10,8 @@ const getAllArticles = (req, res) => {
 };
 
 const getArticlesByAuthor = (req, res) => {
-  const author = req.query.author;
-  const query = `SELECT * FROM articles WHERE author=${author};`;
+  const id = req.query.author_id;
+  const query = `SELECT * FROM articles WHERE author_id=${id};`;
   db.query(query, (err, result) => {
     if (err) throw err;
     res.json(result);
@@ -37,6 +37,7 @@ if(err)throw err;
 res.json(result)
 })
 };
+
 
 const updateAnArticleById = (req, res) => {
   const id = req.params.id;
