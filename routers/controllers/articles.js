@@ -41,7 +41,7 @@ res.json(result)
 
 const updateAnArticleById = (req, res) => {
   const id = req.params.id;
-  const { title,  author_id, description } = req.body;
+  const { title,  author_id, description} = req.body;
   const query = `UPDATE articles SET title=?, author_id=?, description=?
   WHERE id=${id}`
   const arr =[title,  author_id, description]
@@ -54,18 +54,12 @@ db.query(query,arr,(err,result)=>{
 
 const deleteArticleById = (req, res) => {
   const id = req.params.id;
-
-  articlesModel
-    .findByIdAndDelete(id)
-    .then((result) => {
-      res.status(200).json({
-        success: true,
-        message: `Success Delete atricle with id => ${id}`,
-      });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+const query = `UPDATE articles SET is_deleted =1
+WHERE id=${id}`
+  db.query(query,(err,result)=>{
+    if(err)throw err;
+    res.json(result);
+  })
 };
 
 const deleteArticlesByAuthor = (req, res) => {
