@@ -63,19 +63,13 @@ WHERE id=${id}`
 };
 
 const deleteArticlesByAuthor = (req, res) => {
-  const author = req.body.author;
-
-  articlesModel
-    .deleteMany({ author })
-    .then((result) => {
-      res.status(200).json({
-        success: true,
-        message: `Success Delete atricle with id => ${author}`,
-      });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  const author = req.body.author_id;
+const query = `UPDATE articles SET is_deleted =1
+WHERE author_id=${author}`
+   db.query(query,(err,result)=>{
+     if(err)throw err;
+res.json(result);
+   })
 };
 
 module.exports = {
