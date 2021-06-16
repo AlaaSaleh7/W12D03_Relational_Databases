@@ -41,7 +41,14 @@ res.json(result)
 
 const updateAnArticleById = (req, res) => {
   const id = req.params.id;
-
+  const { title,  author_id, description } = req.body;
+  const query = `UPDATE articles SET title=?, author_id=?, description=?
+  WHERE id=${id}`
+  const arr =[title,  author_id, description]
+db.query(query,arr,(err,result)=>{
+  if(err)throw err;
+  res.json(result)
+})
   
 };
 
